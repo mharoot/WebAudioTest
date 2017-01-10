@@ -1,11 +1,8 @@
 
-var osc;
-var aenv;
-var penv;
+var osc  ='';
+var aenv ='';
+var penv ='';
 
-osc = new Sine();
-aenv = new DecayEnv();
-penv = new PitchEnv();
 
 
 var audioContext = new AudioContext();
@@ -79,7 +76,13 @@ source.onended = function() {
 }
 
 kickButton.onclick = function() {
-  console.log('kick button fired');
+  if ( penv === '' && aenv ==='' && osc === '') {
+    osc  = new Sine();
+    aenv = new DecayEnv();
+    penv = new PitchEnv();
+  } else {
   penv.reset();
   aenv.reset();
+  }
+  console.log('kick button fired');
 }
